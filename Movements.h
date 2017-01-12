@@ -60,7 +60,9 @@ task moveMotor(){
 
 		}
 	}
-
+	motor[Leftdrive] = -25;
+	motor[Rightdrive] = -25;
+	wait(0.2);
 	stopMotor(Leftdrive);
 	stopMotor(Rightdrive);
 	driving = false;
@@ -99,6 +101,32 @@ task lift(){
 		motor[lift3] = -125;
 		motor[lift4] = -125;
 		while(SensorValue[liftEncoder] < 115) wait1Msec(5);
+		stopMotor(lift1);
+		stopMotor(lift2);
+		stopMotor(lift3);
+		stopMotor(lift4);
+		} else {
+		motor[lift1] = 125;
+		motor[lift2] = 125;
+		motor[lift3] = 125;
+		motor[lift4] = 125;
+		while(SensorValue[liftEncoder] > 5) wait1Msec(5);
+		stopMotor(lift1);
+		stopMotor(lift2);
+		stopMotor(lift3);
+		stopMotor(lift4);
+	}
+	lifting = false;
+}
+
+task liftC(){
+	lifting = true;
+	if(up){
+		motor[lift1] = -125;
+		motor[lift2] = -125;
+		motor[lift3] = -125;
+		motor[lift4] = -125;
+		while(SensorValue[liftEncoder] < lCount) wait1Msec(5);
 		stopMotor(lift1);
 		stopMotor(lift2);
 		stopMotor(lift3);

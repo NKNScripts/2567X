@@ -24,14 +24,14 @@
 
 
 //Main competition background code...do not modify!
-#include "Vex_Competition_Includes.c"
+//#include "Vex_Competition_Includes.c"
 //TO HERE-----------------------------------------------------
 void pre_auton(){
 
 	SensorValue[rightEncoder] = 0;
 	SensorValue[leftEncoder] = 0;
 	SensorValue[liftEncoder] = 0;
-	bStopTasksBetweenModes = true;
+	//bStopTasksBetweenModes = true;
 	lcdSetup();
 }
 task autonomous(){
@@ -52,11 +52,12 @@ task usercontrol(){
 	userControl();
 }
 //for comp mark out from here-------------------
-/*
+
 task main(){
 pre_auton();
-startTask(autonomous);
-	while(true) wait(1);
+	startTask(autonomous);
+	while(true)wait(1);
+
 }
-*/
+
 //TO HERE----------------------------------------------------------------
