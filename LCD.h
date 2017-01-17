@@ -70,7 +70,7 @@ void lcdSetup()
 				break;
 			case 1:
 				//Display second choice
-				displayLCDCenteredString(0, "Autonomous Right");
+				displayLCDCenteredString(0, "Auton Right Star");
 				displayLCDCenteredString(1, "<		 Enter		>");
 				waitForPress();
 				//Increment or decrement "count" based on button press
@@ -122,7 +122,26 @@ void lcdSetup()
 			default:
 				count++;
 				break;
+
 			case 4:
+				//Display third choice
+				displayLCDCenteredString(0, "Autonomous Right");
+				displayLCDCenteredString(1, "<		 Enter		>");
+				waitForPress();
+				//Increment or decrement "count" based on button press
+				if(nLCDButtons == leftButton)
+				{
+					waitForRelease();
+					count--;
+				}
+				else if(nLCDButtons == rightButton)
+				{
+					waitForRelease();
+					count++;
+				}
+				break;
+
+			case 8:
 
 				//Display the Primary Robot battery voltage
 				displayLCDString(0, 0, "Primary: ");
