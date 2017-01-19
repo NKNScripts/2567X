@@ -60,7 +60,7 @@ void lcdSetup()
 				if(nLCDButtons == leftButton)
 				{
 					waitForRelease();
-					count = 5;
+					count = 6;
 				}
 				else if(nLCDButtons == rightButton)
 				{
@@ -140,6 +140,23 @@ void lcdSetup()
 					count++;
 				}
 				break;
+				case 6:
+				//Display third choice
+				displayLCDCenteredString(0, "Autonomous Left Star");
+				displayLCDCenteredString(1, "<		 Enter		>");
+				waitForPress();
+				//Increment or decrement "count" based on button press
+				if(nLCDButtons == leftButton)
+				{
+					waitForRelease();
+					count--;
+				}
+				else if(nLCDButtons == rightButton)
+				{
+					waitForRelease();
+					count = 0;
+				}
+				break;
 
 			case 8:
 
@@ -182,7 +199,7 @@ void lcdSetup()
 				else if(nLCDButtons == rightButton)
 				{
 					waitForRelease();
-					count = 0;
+					count++;
 				}
 				break;
 			default:
