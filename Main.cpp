@@ -29,6 +29,11 @@
 //Main competition background code...do not modify!
 #include "Vex_Competition_Includes.c"
 //TO HERE-----------------------------------------------------
+/**
+*
+*Desc: Resets encoder account
+*
+**/
 void pre_auton(){
 
 	SensorValue[rightEncoder] = 0;
@@ -37,6 +42,11 @@ void pre_auton(){
 	bStopTasksBetweenModes = true;
 	lcdSetup();
 }
+/**
+*
+*Desc: Uses switch statement to read from LED and choose appropriate auton method
+*
+*/
 task autonomous(){
 	switch(getCount()){
 	case 0:
@@ -58,12 +68,17 @@ task autonomous(){
 		Auton_Left_Star();
 		break;
 	}
-/*
-}
 
+}
+/**
+*
+*desc: user control task.
+*/
 task usercontrol(){
 	userControl();
 }
+
+/*
 //for comp mark out from here-------------------
 
 task main(){
