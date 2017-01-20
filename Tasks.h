@@ -3,7 +3,10 @@
 
 #include "Globals.h"
 #include "Movements.h"
-
+/**
+*desc: Auton for the left start position to grab back cube
+*
+*/
 void auton_leftcube(){
 	motor[Leftdrive] = 50;
 	motor[Rightdrive] = 127;
@@ -22,18 +25,13 @@ void auton_leftcube(){
 	wait(0.9);
 	distance = -10;
 	startTask(moveMotor);
-
 	deg = -100;
 	up = false;
 	while(driving) wait10Msec(1);
-
-
 	while(driveb()) wait10Msec(1);
-
 	startTask(lift);
 	while(lifting) wait10Msec(2);
 	startTask(rotate);
-
 	distance = 10;
 	startTask(moveMotor);
 	while(driving) wait10Msec(10);
@@ -72,6 +70,11 @@ void auton_leftcube(){
 	startTask(moveMotor);
 
 }
+/**
+*desc: Auton for the right start position to grab cube
+*
+*/
+
 void auton_rightcube(){
 	motor[Leftdrive] = 127;
 	motor[Rightdrive] = 50;
@@ -90,18 +93,13 @@ void auton_rightcube(){
 	wait(0.9);
 	distance = -10;
 	startTask(moveMotor);
-
 	deg = 100;
 	up = false;
 	while(driving) wait10Msec(1);
-
-
 	while(driveb()) wait10Msec(1);
-
 	startTask(lift);
 	while(lifting) wait10Msec(2);
 	startTask(rotate);
-
 	distance = 10;
 	startTask(moveMotor);
 	while(driving) wait10Msec(10);
@@ -139,6 +137,11 @@ void auton_rightcube(){
 	distance = 20;
 	startTask(moveMotor);
 }
+
+/**
+*desc: Auton for the left start position to hit fence stars
+*
+*/
 void auton_left(){
 
 	motor[Leftdrive] = 50;
@@ -158,14 +161,13 @@ void auton_left(){
 	wait(0.9);
 	distance = -5;
 	startTask(moveMotor);
-
 	while(driving) wait10Msec(1);
-
-
 	while(driveb()) wait10Msec(1);
-
 }
-
+/**
+*desc: Auton for the right start position to knock fence stars off
+*
+*/
 void auton_right() {
 
 	motor[Leftdrive] = 127;
@@ -185,16 +187,16 @@ void auton_right() {
 	wait(0.9);
 	distance = -5;
 	startTask(moveMotor);
-
 	while(driving) wait10Msec(1);
-
-
 	while(driveb()) wait10Msec(1);
 }
+
+/**
+*desc: Auton for the left start position to grab back stars.
+*
+*/
 void Auton_Left_Star() {
-
-
-motor[Leftdrive] = 50;
+	motor[Leftdrive] = 50;
 	motor[Rightdrive] = 127;
 	wait(0.3);
 	motor[Leftdrive] = 127;
@@ -215,21 +217,14 @@ motor[Leftdrive] = 50;
 	closeTime = 0.46;
 	close = true;
 	startTask(claw);
-
-
 	deg = -125;
 	up = false;
 	while(driving) wait10Msec(1);
-
-
 	wait(0.50);
-
-
 	startTask(rotate);
 	while(driving) wait10Msec(1);
 	startTask(lift);
 	while(lifting) wait10Msec(2);
-
 	distance = 11;
 	startTask(moveMotor);
 	while(driving) wait10Msec(10);
@@ -237,13 +232,11 @@ motor[Leftdrive] = 50;
 	close = true;
 	startTask(claw);
 	up = true;
-
 	wait(1);
 	distance = -13;
 	startTask(moveMotor);
 	startTask(lift);
-wait(2);
-
+	wait(2);
 	deg = 140;
 	startTask(rotate);
 	while(driving)wait10Msec(1);
@@ -257,10 +250,13 @@ wait(2);
 	startTask(claw);
 
 }
+
+/**
+*desc: Auton for the right start position to grab back stars.
+*
+*/
 void Auton_Right_Star() {
-
-
-motor[Leftdrive] = 127;
+	motor[Leftdrive] = 127;
 	motor[Rightdrive] = 50;
 	wait(0.3);
 	motor[Rightdrive] = 127;
@@ -281,21 +277,14 @@ motor[Leftdrive] = 127;
 	closeTime = 0.46;
 	close = true;
 	startTask(claw);
-
-
 	deg = 125;
 	up = false;
 	while(driving) wait10Msec(1);
-
-
 	wait(0.50);
-
-
 	startTask(rotate);
 	while(driving) wait10Msec(1);
 	startTask(lift);
 	while(lifting) wait10Msec(2);
-
 	distance = 11;
 	startTask(moveMotor);
 	while(driving) wait10Msec(10);
@@ -303,13 +292,11 @@ motor[Leftdrive] = 127;
 	close = true;
 	startTask(claw);
 	up = true;
-
 	wait(1);
 	distance = -13;
 	startTask(moveMotor);
 	startTask(lift);
-wait(2);
-
+	wait(2);
 	deg = -140;
 	startTask(rotate);
 	while(driving)wait10Msec(1);
@@ -321,7 +308,6 @@ wait(2);
 	close = false;
 	closeTime = 0.6;
 	startTask(claw);
-
 }
 
 void userControl()
