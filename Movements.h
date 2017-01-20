@@ -2,11 +2,20 @@
 #define movements
 
 #include "Globals.h"
+/**
+*
+*desc: Method to show if the bot is moving
+* return: bool, true if moving
+*/
 bool driveb(){
 	int count = SensorValue[rightEncoder];
 	wait10Msec(2);
 	return count != SensorValue[rightEncoder];
 }
+/**
+*desc: Takes input from degrees in globals.h and rotates the bot the appropriate degrees.
+*
+*/
 task rotate(){
 	while(driving) wait10Msec(10);
 	driving = true;
@@ -35,6 +44,10 @@ task rotate(){
 	stopMotor(Rightdrive);
 	driving = false;
 }
+/**
+*desc: Takes input from distance in globals.h and moves the bot the appopriate distance.
+*
+*/
 task moveMotor(){
 	while(driving) wait10Msec(10);
 	driving = true;
@@ -67,7 +80,10 @@ task moveMotor(){
 	stopMotor(Rightdrive);
 	driving = false;
 }
-
+/**
+*
+*desc: Takes a second input from globals.h and lifts the barlift for that amount
+*/
 task liftSecond(){
 	lifting = true;
 	if(up){
@@ -93,6 +109,11 @@ task liftSecond(){
 	}
 	lifting = false;
 }
+
+/**
+*desc: Lifts the motors until it reaches 115 encoder count
+*
+*/
 task lift(){
 	lifting = true;
 	if(up){
@@ -118,7 +139,10 @@ task lift(){
 	}
 	lifting = false;
 }
-
+/**
+*
+*desc: Lifts lift from lCount encoder
+*/
 task liftC(){
 	lifting = true;
 	if(up){
@@ -144,7 +168,10 @@ task liftC(){
 	}
 	lifting = false;
 }
-
+/**
+*desc: Opens or closes claw
+*
+*/
 task claw(){
 	if(close){
 		motor[Leftclaw] = 127;
