@@ -3,26 +3,48 @@
 
 #include "Globals.h"
 #include "Movements.h"
+
+void fence(bool left){
+	if(left){
+		motor[Leftdrive] = 50;
+		motor[Rightdrive] = 127;
+		wait(0.3);
+		motor[Leftdrive] = 127;
+		closeTime = 0.7;
+		close = true;
+		startTask(claw);
+		wait(0.4);
+		lCount = 70;
+		startTask(liftC);
+		wait(0.3);
+		motor[Rightdrive] = 30;
+		wait(0.5);
+		motor[Rightdrive] = 127;
+		wait(0.9);
+	} else {
+		motor[Leftdrive] = 127;
+		motor[Rightdrive] = 50;
+		wait(0.3);
+		motor[Rightdrive] = 127;
+		closeTime = 0.7;
+		close = true;
+		startTask(claw);
+		wait(0.4);
+		lCount = 70;
+		startTask(liftC);
+		wait(0.3);
+		motor[Leftdrive] = 30;
+		wait(0.5);
+		motor[Leftdrive] = 127;
+		wait(0.9);
+	}
+}
 /**
 *desc: Auton for the left start position to grab back cube
 *
 */
 void auton_leftcube(){
-	motor[Leftdrive] = 50;
-	motor[Rightdrive] = 127;
-	wait(0.3);
-	motor[Leftdrive] = 127;
-	closeTime = 0.7;
-	close = true;
-	startTask(claw);
-	wait(0.4);
-	lCount = 70;
-	startTask(liftC);
-	wait(0.3);
-	motor[Rightdrive] = 30;
-	wait(0.5);
-	motor[Rightdrive] = 127;
-	wait(0.9);
+	fence(true);
 	distance = -10;
 	startTask(moveMotor);
 	deg = -100;
@@ -76,21 +98,7 @@ void auton_leftcube(){
 */
 
 void auton_rightcube(){
-	motor[Leftdrive] = 127;
-	motor[Rightdrive] = 50;
-	wait(0.3);
-	motor[Rightdrive] = 127;
-	closeTime = 0.7;
-	close = true;
-	startTask(claw);
-	wait(0.4);
-	lCount = 70;
-	startTask(liftC);
-	wait(0.3);
-	motor[Leftdrive] = 30;
-	wait(0.5);
-	motor[Leftdrive] = 127;
-	wait(0.9);
+	fence(false);
 	distance = -10;
 	startTask(moveMotor);
 	deg = 100;
@@ -144,21 +152,7 @@ void auton_rightcube(){
 */
 void auton_left(){
 
-	motor[Leftdrive] = 50;
-	motor[Rightdrive] = 127;
-	wait(0.3);
-	motor[Leftdrive] = 127;
-	closeTime = 0.7;
-	close = true;
-	startTask(claw);
-	wait(0.4);
-	lCount = 70;
-	startTask(liftC);
-	wait(0.3);
-	motor[Rightdrive] = 30;
-	wait(0.5);
-	motor[Rightdrive] = 127;
-	wait(0.9);
+	fence(true);
 	distance = -5;
 	startTask(moveMotor);
 	while(driving) wait10Msec(1);
@@ -170,21 +164,7 @@ void auton_left(){
 */
 void auton_right() {
 
-	motor[Leftdrive] = 127;
-	motor[Rightdrive] = 50;
-	wait(0.3);
-	motor[Rightdrive] = 127;
-	closeTime = 0.7;
-	close = true;
-	startTask(claw);
-	wait(0.4);
-	lCount = 70;
-	startTask(liftC);
-	wait(0.3);
-	motor[Leftdrive] = 30;
-	wait(0.5);
-	motor[Leftdrive] = 127;
-	wait(0.9);
+	fence(false);
 	distance = -5;
 	startTask(moveMotor);
 	while(driving) wait10Msec(1);
@@ -196,21 +176,7 @@ void auton_right() {
 *
 */
 void Auton_Left_Star() {
-	motor[Leftdrive] = 50;
-	motor[Rightdrive] = 127;
-	wait(0.3);
-	motor[Leftdrive] = 127;
-	closeTime = 0.7;
-	close = true;
-	startTask(claw);
-	wait(0.4);
-	lCount = 70;
-	startTask(liftC);
-	wait(0.3);
-	motor[Rightdrive] = 30;
-	wait(0.5);
-	motor[Rightdrive] = 127;
-	wait(0.9);
+	fence(true);
 	distance = -17;
 	startTask(moveMotor);
 	wait(0.5);
@@ -256,21 +222,7 @@ void Auton_Left_Star() {
 *
 */
 void Auton_Right_Star() {
-	motor[Leftdrive] = 127;
-	motor[Rightdrive] = 50;
-	wait(0.3);
-	motor[Rightdrive] = 127;
-	closeTime = 0.7;
-	close = true;
-	startTask(claw);
-	wait(0.4);
-	lCount = 70;
-	startTask(liftC);
-	wait(0.3);
-	motor[Leftdrive] = 30;
-	wait(0.5);
-	motor[Leftdrive] = 127;
-	wait(0.9);
+	fence(false);
 	distance = -17;
 	startTask(moveMotor);
 	wait(0.5);
