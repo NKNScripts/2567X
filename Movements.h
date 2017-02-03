@@ -53,20 +53,27 @@ task moveMotor(){
 	driving = true;
 	if(distance > 0){
 		float cycle = distance / inPerEncoder;
-		string s = cycle;
-		moveMotorTarget(Rightdrive, cycle, 127, true);
-		moveMotorTarget(Leftdrive, cycle, 127, true);
-		waitUntilMotorStop(Rithtdrive);
-		waitUntilMotorStop(Leftdrive);
+		SensorValue[rightEncoder] = 0;
+		motor[port3] = 127;
+		motor[port8] = 127;
+		while(SensorValue[rightEncoder] <= cycle)
+			wait1Msec(1);
 
 		} else {
 		float cycle = (distance / inPerEncoder);
-		string s = cycle;
-		moveMotorTarget(Rightdrive, cycle, 127, true);
-		moveMotorTarget(Leftdrive, cycle, 127, true);
-		waitUntilMotorStop(Rithtdrive);
-		waitUntilMotorStop(Leftdrive);
+		SensorValue[rightEncoder] = 0;
+		motor[port3] = -127;
+		motor[port8] = -127;
+		while(SensorValue[rightEncoder] >= cycle){
+			wait1Msec(1);
+
+		}
 	}
+	motor[Leftdrive] = -25;
+	motor[Rightdrive] = -25;
+	wait(0.2);
+	stopMotor(Leftdrive);
+	stopMotor(Rightdrive);
 	driving = false;
 }
 /**
