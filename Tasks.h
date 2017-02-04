@@ -1,4 +1,4 @@
-#ifndef tasks
+//3v3v3#ifndef tasks
 #define tasks
 
 #include "Globals.h"
@@ -45,16 +45,16 @@ void fence(bool left){
 */
 void auton_leftcube(){
 	fence(true);
-	distance = -10;
+	distance = -40;
 	startTask(moveMotor);
-	deg = -100;
+	deg = -105;
 	up = false;
 	while(driving) wait10Msec(1);
 	while(driveb()) wait10Msec(1);
 	startTask(lift);
 	while(lifting) wait10Msec(2);
 	startTask(rotate);
-	distance = 10;
+	distance = 50;
 	startTask(moveMotor);
 	while(driving) wait10Msec(10);
 	closeTime = 3;
@@ -69,7 +69,7 @@ void auton_leftcube(){
 	deg = 165;
 	startTask(rotate);
 	while(driving)wait10Msec(1);
-	distance = 10;
+	distance = 45;
 	startTask(moveMotor);
 	while(driving)wait10Msec(1);
 	close = false;
@@ -77,7 +77,7 @@ void auton_leftcube(){
 	startTask(claw);
 	wait(1);
 	liftTime = 0.25;
-	distance = -10;
+	distance = -20;
 	startTask(moveMotor);
 	while(driving) wait10Msec(1);
 	up = false;
@@ -88,7 +88,7 @@ void auton_leftcube(){
 	up = true;
 	startTask(liftSecond);
 	while(lifting) wait10Msec(1);
-	distance = 20;
+	distance = 35;
 	startTask(moveMotor);
 
 }
@@ -99,16 +99,16 @@ void auton_leftcube(){
 
 void auton_rightcube(){
 	fence(false);
-	distance = -10;
+	distance = -40;
 	startTask(moveMotor);
-	deg = 100;
+	deg = 105;
 	up = false;
 	while(driving) wait10Msec(1);
 	while(driveb()) wait10Msec(1);
 	startTask(lift);
 	while(lifting) wait10Msec(2);
 	startTask(rotate);
-	distance = 10;
+	distance = 50;
 	startTask(moveMotor);
 	while(driving) wait10Msec(10);
 	closeTime = 3;
@@ -123,7 +123,7 @@ void auton_rightcube(){
 	deg = -165;
 	startTask(rotate);
 	while(driving)wait10Msec(1);
-	distance = 10;
+	distance = 45;
 	startTask(moveMotor);
 	while(driving)wait10Msec(1);
 	close = false;
@@ -131,7 +131,7 @@ void auton_rightcube(){
 	startTask(claw);
 	wait(1);
 	liftTime = 0.25;
-	distance = -10;
+	distance = -20;
 	startTask(moveMotor);
 	while(driving) wait10Msec(1);
 	up = false;
@@ -142,7 +142,7 @@ void auton_rightcube(){
 	up = true;
 	startTask(liftSecond);
 	while(lifting) wait10Msec(1);
-	distance = 20;
+	distance = 35;
 	startTask(moveMotor);
 }
 
@@ -177,13 +177,13 @@ void auton_right() {
 */
 void Auton_Left_Star() {
 	fence(true);
-	distance = -17;
+	distance = -80;
 	startTask(moveMotor);
 	wait(0.5);
 	closeTime = 0.46;
 	close = true;
 	startTask(claw);
-	deg = -125;
+	deg = -140;
 	up = false;
 	while(driving) wait10Msec(1);
 	wait(0.50);
@@ -191,7 +191,7 @@ void Auton_Left_Star() {
 	while(driving) wait10Msec(1);
 	startTask(lift);
 	while(lifting) wait10Msec(2);
-	distance = 11;
+	distance = 95;
 	startTask(moveMotor);
 	while(driving) wait10Msec(10);
 	closeTime = 3.5;
@@ -199,14 +199,14 @@ void Auton_Left_Star() {
 	startTask(claw);
 	up = true;
 	wait(1);
-	distance = -13;
+	distance = -85;
 	startTask(moveMotor);
 	startTask(lift);
 	wait(2);
 	deg = 140;
 	startTask(rotate);
 	while(driving)wait10Msec(1);
-	distance = 17;
+	distance = 90;
 	startTask(moveMotor);
 	up = true;
 	startTask(lift);
@@ -223,13 +223,13 @@ void Auton_Left_Star() {
 */
 void Auton_Right_Star() {
 	fence(false);
-	distance = -17;
+	distance = -80;
 	startTask(moveMotor);
 	wait(0.5);
 	closeTime = 0.46;
 	close = true;
 	startTask(claw);
-	deg = 125;
+	deg = 140;
 	up = false;
 	while(driving) wait10Msec(1);
 	wait(0.50);
@@ -237,7 +237,7 @@ void Auton_Right_Star() {
 	while(driving) wait10Msec(1);
 	startTask(lift);
 	while(lifting) wait10Msec(2);
-	distance = 11;
+	distance = 95;
 	startTask(moveMotor);
 	while(driving) wait10Msec(10);
 	closeTime = 3.5;
@@ -245,21 +245,29 @@ void Auton_Right_Star() {
 	startTask(claw);
 	up = true;
 	wait(1);
-	distance = -13;
+	distance = -85;
 	startTask(moveMotor);
 	startTask(lift);
 	wait(2);
 	deg = -140;
 	startTask(rotate);
+	close = true;
+	wait1Msec(300);
+	startTask(claw);
 	while(driving)wait10Msec(1);
-	distance = 17;
+	distance = 90;
 	startTask(moveMotor);
 	up = true;
 	startTask(lift);
 	while(driving)wait10Msec(1);
+	while(1==1) {
+	closeTime = 1;
 	close = false;
-	closeTime = 0.6;
 	startTask(claw);
+	wait(1);
+	stopMotor(Leftclaw);
+	stopMotor(Rightclaw);
+}
 }
 
 void userControl()
@@ -328,4 +336,4 @@ void userControl()
 
 	}
 }
-#endif
+//#endif
