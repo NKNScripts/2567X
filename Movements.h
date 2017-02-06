@@ -12,6 +12,54 @@ bool driveb(){
 	wait10Msec(2);
 	return count != SensorValue[rightEncoder];
 }
+task rotateGyro(){
+	float tDegrees = deg * 10;
+	while(driving) wait10Msec(10);
+	driving = true;
+	if(tDegrees > 0){
+		int read = SensorValue[in1];
+		motor[Leftdrive] = -60;
+		motor[Rightdrive] = 60;
+		while(read < (tDegrees-500)){
+			wait1Msec(5);
+			read = SensorValue[in1];
+		}
+		motor[Leftdrive] = -30;
+		motor[Rightdrive] = 30;
+		while(read < tDegrees){
+			wait1Msec(5);
+			read = SensorValue[in1];
+		}
+		motor[Leftdrive] = 10;
+		motor[Rightdrive] = -10;
+		wait1Msec(20);
+		stopMotor(Leftdrive);
+		stopMotor(Rightdrive);
+		string s = SensorValue[in1];
+		displayLCDCenteredString(0,s);
+	} else {
+		int read = SensorValue[in1];
+		motor[Leftdrive] = 60;
+		motor[Rightdrive] = -60;
+		while(read > (tDegrees+500)){
+			wait1Msec(5);
+			read = SensorValue[in1];
+		}
+		motor[Leftdrive] = 30;
+		motor[Rightdrive] = -30;
+		while(read > tDegrees){
+			wait1Msec(5);
+			read = SensorValue[in1];
+		}
+		motor[Leftdrive] = -10;
+		motor[Rightdrive] = 10;
+		wait1Msec(20);
+		stopMotor(Leftdrive);
+		stopMotor(Rightdrive);
+		string s = SensorValue[in1];
+		displayLCDCenteredString(0,s);
+	}
+}
 /**
 *desc: Takes input from degrees in globals.h and rotates the bot the appropriate degrees.
 *

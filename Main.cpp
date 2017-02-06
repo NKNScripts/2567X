@@ -1,3 +1,4 @@
+#pragma config(Sensor, in1,    Gyroscope,      sensorGyro)
 #pragma config(Sensor, dgtl1,  rightEncoder,   sensorQuadEncoder)
 #pragma config(Sensor, dgtl3,  leftEncoder,    sensorQuadEncoder)
 #pragma config(Sensor, dgtl5,  liftEncoder,    sensorQuadEncoder)
@@ -36,6 +37,11 @@ void pre_auton(){
 	SensorValue[rightEncoder] = 0;
 	SensorValue[leftEncoder] = 0;
 	SensorValue[liftEncoder] = 0;
+	SensorType[in1] = sensorNone;
+	wait(0.5);
+	SensorType[in1] = sensorGyro;
+	wait(2);
+	SensorScale[in1] = 102;
 	//bStopTasksBetweenModes = true;
 	lcdSetup();
 }
@@ -79,8 +85,7 @@ task usercontrol(){
 //for comp mark out from here-------------------
 
 task main(){
-pre_auton();
-	Auton_Right_Star();
+	userControl();
 
 }
 
