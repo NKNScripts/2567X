@@ -12,7 +12,8 @@ bool driveb(){
 	wait10Msec(2);
 	return count != SensorValue[rightEncoder];
 }
-task rotateGyro(){
+task rotate(){
+	SensorValue[in1] = 0;
 	float tDegrees = deg * 10;
 	while(driving) wait10Msec(10);
 	driving = true;
@@ -20,18 +21,18 @@ task rotateGyro(){
 		int read = SensorValue[in1];
 		motor[Leftdrive] = -60;
 		motor[Rightdrive] = 60;
-		while(read < (tDegrees-500)){
+		while(read < (tDegrees-350)){
 			wait1Msec(5);
 			read = SensorValue[in1];
 		}
-		motor[Leftdrive] = -30;
-		motor[Rightdrive] = 30;
+		motor[Leftdrive] = -35;
+		motor[Rightdrive] = 35;
 		while(read < tDegrees){
 			wait1Msec(5);
 			read = SensorValue[in1];
 		}
-		motor[Leftdrive] = 10;
-		motor[Rightdrive] = -10;
+		motor[Leftdrive] = 20;
+		motor[Rightdrive] = -20;
 		wait1Msec(20);
 		stopMotor(Leftdrive);
 		stopMotor(Rightdrive);
@@ -41,12 +42,12 @@ task rotateGyro(){
 		int read = SensorValue[in1];
 		motor[Leftdrive] = 60;
 		motor[Rightdrive] = -60;
-		while(read > (tDegrees+500)){
+		while(read > (tDegrees+350)){
 			wait1Msec(5);
 			read = SensorValue[in1];
 		}
-		motor[Leftdrive] = 30;
-		motor[Rightdrive] = -30;
+		motor[Leftdrive] = 35;
+		motor[Rightdrive] = -35;
 		while(read > tDegrees){
 			wait1Msec(5);
 			read = SensorValue[in1];
@@ -59,12 +60,13 @@ task rotateGyro(){
 		string s = SensorValue[in1];
 		displayLCDCenteredString(0,s);
 	}
+	driving = false;
 }
 /**
 *desc: Takes input from degrees in globals.h and rotates the bot the appropriate degrees.
 *
 */
-task rotate(){
+task rotateBackup(){
 	while(driving) wait10Msec(10);
 	driving = true;
 	if(deg > 0){

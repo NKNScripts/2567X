@@ -85,7 +85,11 @@ task usercontrol(){
 //for comp mark out from here-------------------
 
 task main(){
-	userControl();
+	pre_auton();
+	startTask(autonomous);
+	while(true)wait(1);
+
+
 
 }
 

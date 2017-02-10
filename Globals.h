@@ -4,7 +4,7 @@
 int liftCount = 0;
 float closeTime = 2;
 bool liftInUse = false;
-float inPerEncoder = 30.0/360;
+float inPerEncoder = 13.0/360;
 float deg;
 float degreePerEncoder = 90.0/0.42;
 int distance;
