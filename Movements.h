@@ -52,8 +52,8 @@ task rotate(){
 			wait1Msec(5);
 			read = SensorValue[in1];
 		}
-		motor[Leftdrive] = -10;
-		motor[Rightdrive] = 10;
+		motor[Leftdrive] = -20;
+		motor[Rightdrive] = 20;
 		wait1Msec(20);
 		stopMotor(Leftdrive);
 		stopMotor(Rightdrive);
@@ -232,6 +232,35 @@ task claw(){
 		stopMotor(Rightclaw);
 		stopMotor(Leftclaw);
 	}
+}
+
+task moveMotorCC(){
+	while(driving) wait10Msec(10);
+	driving = true;
+	if(distance > 0){
+		float cycle = distance / inPerEncoder;
+		SensorValue[rightEncoder] = 0;
+		motor[port3] = 127;
+		motor[port8] = 70;
+		while(SensorValue[rightEncoder] <= cycle)
+			wait1Msec(1);
+
+		} else {
+		float cycle = (distance / inPerEncoder);
+		SensorValue[rightEncoder] = 0;
+		motor[port3] = -127;
+		motor[port8] = -70;
+		while(SensorValue[rightEncoder] >= cycle){
+			wait1Msec(1);
+
+		}
+	}
+	motor[Leftdrive] = -25;
+	motor[Rightdrive] = -25;
+	wait(0.2);
+	stopMotor(Leftdrive);
+	stopMotor(Rightdrive);
+	driving = false;
 }
 
 #endif

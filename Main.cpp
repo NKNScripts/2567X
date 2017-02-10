@@ -25,7 +25,7 @@
 
 
 //Main competition background code...do not modify!
-//#include "Vex_Competition_Includes.c"
+#include "Vex_Competition_Includes.c"
 //TO HERE-----------------------------------------------------
 /**
 *
@@ -42,7 +42,7 @@ void pre_auton(){
 	SensorType[in1] = sensorGyro;
 	wait(2);
 	SensorScale[in1] = 102;
-	//bStopTasksBetweenModes = true;
+	bStopTasksBetweenModes = true;
 	lcdSetup();
 }
 /**
@@ -83,15 +83,13 @@ task usercontrol(){
 
 
 //for comp mark out from here-------------------
-
+/*
 task main(){
 	pre_auton();
 	startTask(autonomous);
-	while(true)wait(1);
+	while(true) wait(1);
 
 
-
-}
-
+}*/
 /*TO HERE----------------------------------------------------------------
 */

@@ -1,4 +1,4 @@
-//3v3v3#ifndef tasks
+#ifndef tasks
 #define tasks
 
 #include "Globals.h"
@@ -61,7 +61,7 @@ void auton_leftcube(){
 	distance = 20;
 	startTask(moveMotor);
 	while(driving) wait10Msec(10);
-	closeTime = 5;
+	closeTime = 4;
 	close = true;
 	startTask(claw);
 	up = true;
@@ -78,7 +78,7 @@ void auton_leftcube(){
 	startTask(moveMotor);
 	while(driving)wait10Msec(1);
 	close = false;
-	closeTime = 0.6;
+	closeTime = 0.7;
 	startTask(claw);
 	up = true;
 	startTask(lift);
@@ -91,7 +91,7 @@ void auton_leftcube(){
 	while(driveb())wait10Msec(1);
 	startTask(liftSecond);
 	while(lifting) wait10Msec(1);
-	liftTime = 0.30;
+	liftTime = 0.25;
 	up = true;
 	startTask(liftSecond);
 	while(lifting) wait10Msec(1);
@@ -194,13 +194,13 @@ void auton_right() {
 */
 void Auton_Left_Star() {
 	fence(true);
-	distance = -80;
+	distance = -34;
 	startTask(moveMotor);
 	wait(0.5);
-	closeTime = 0.46;
+	closeTime = 0.75;
 	close = true;
 	startTask(claw);
-	deg = -140;
+	deg = -96;
 	up = false;
 	while(driving) wait10Msec(1);
 	wait(0.50);
@@ -208,7 +208,7 @@ void Auton_Left_Star() {
 	while(driving) wait10Msec(1);
 	startTask(lift);
 	while(lifting) wait10Msec(2);
-	distance = 95;
+	distance = 40;
 	startTask(moveMotor);
 	while(driving) wait10Msec(10);
 	closeTime = 3.5;
@@ -216,21 +216,26 @@ void Auton_Left_Star() {
 	startTask(claw);
 	up = true;
 	wait(1);
-	distance = -85;
-	startTask(moveMotor);
+		distance = -25;
+		startTask(moveMotorCC);
 	startTask(lift);
 	wait(2);
-	deg = 140;
+	deg = 75;
 	startTask(rotate);
+	close = true;
+	wait1Msec(300);
+	//startTask(claw);
 	while(driving)wait10Msec(1);
-	distance = 90;
+	distance = 37;
 	startTask(moveMotor);
 	up = true;
 	startTask(lift);
-	wait(3);
-	close = false;
-	closeTime = 0.6;
-	startTask(claw);
+	wait(2.5);
+	motor[Leftclaw] = -127;
+	motor[Rightclaw] = -127;
+	wait(0.75);
+	stopMotor(Leftclaw);
+	stopMotor(Rightclaw);
 
 }
 
@@ -243,10 +248,10 @@ void Auton_Right_Star() {
 	distance = -34;
 	startTask(moveMotor);
 	wait(0.5);
-	closeTime = 1;
+	closeTime = 0.75;
 	close = true;
 	startTask(claw);
-	deg = 99;
+	deg = 96;
 	up = false;
 	while(driving) wait10Msec(1);
 	wait(0.50);
@@ -254,7 +259,7 @@ void Auton_Right_Star() {
 	while(driving) wait10Msec(1);
 	startTask(lift);
 	while(lifting) wait10Msec(2);
-	distance = 50;
+	distance = 40;
 	startTask(moveMotor);
 	while(driving) wait10Msec(10);
 	closeTime = 3.5;
@@ -262,29 +267,26 @@ void Auton_Right_Star() {
 	startTask(claw);
 	up = true;
 	wait(1);
-	distance = -35;
-	startTask(moveMotor);
+		distance = -25;
+		startTask(moveMotorCC);
 	startTask(lift);
 	wait(2);
-	deg = -55;
+	deg = -75;
 	startTask(rotate);
 	close = true;
 	wait1Msec(300);
-	startTask(claw);
+	//startTask(claw);
 	while(driving)wait10Msec(1);
-	distance = 65;
+	distance = 37;
 	startTask(moveMotor);
 	up = true;
 	startTask(lift);
-	while(driving)wait10Msec(1);
-	while(1==1) {
-	closeTime = 1;
-	close = false;
-	startTask(claw);
-	wait(1);
+	wait(2.5);
+	motor[Leftclaw] = -127;
+	motor[Rightclaw] = -127;
+	wait(0.75);
 	stopMotor(Leftclaw);
 	stopMotor(Rightclaw);
-}
 }
 
 void userControl()
@@ -353,4 +355,4 @@ void userControl()
 
 	}
 }
-//#endif
+#endif
