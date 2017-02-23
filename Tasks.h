@@ -197,7 +197,7 @@ void Auton_Left_Star() {
 	distance = -34;
 	startTask(moveMotor);
 	wait(0.5);
-	closeTime = 0.75;
+	closeTime = 0.55;
 	close = true;
 	startTask(claw);
 	deg = -96;
@@ -248,7 +248,7 @@ void Auton_Right_Star() {
 	distance = -34;
 	startTask(moveMotor);
 	wait(0.5);
-	closeTime = 0.75;
+	closeTime = 0.55;
 	close = true;
 	startTask(claw);
 	deg = 96;

@@ -1,3 +1,4 @@
+#pragma config(Sensor, in1,    Gyroscope,      sensorGyro)
 #pragma config(Sensor, dgtl1,  rightEncoder,   sensorQuadEncoder)
 #pragma config(Sensor, dgtl3,  leftEncoder,    sensorQuadEncoder)
 #pragma config(Sensor, dgtl5,  liftEncoder,    sensorQuadEncoder)
@@ -23,6 +24,7 @@
 #include "Movements.h"
 #include "Tasks.h"
 #include "Globals.h"
+#include "programmingskills.h"
 /////////////////////////////////////////////////////////////////////////////////////////
 //
 //                         Driver Skills Template
@@ -114,10 +116,15 @@ void pre_auton()
 {
 	// Set bStopTasksBetweenModes to false if you want to keep user created tasks running between
 	// Autonomous and Tele-Op modes. You will need to manage all user created tasks if set to false.
-	bStopTasksBetweenModes = true;
 	SensorValue[rightEncoder] = 0;
 	SensorValue[leftEncoder] = 0;
 	SensorValue[liftEncoder] = 0;
+	SensorType[in1] = sensorNone;
+	wait(0.5);
+	SensorType[in1] = sensorGyro;
+	wait(2);
+	SensorScale[in1] = 102;
+	bStopTasksBetweenModes = true;
 	// All activities that occur before the competition starts
 	// Example: clearing encoders, setting servo positions, ...
 }
@@ -133,7 +140,7 @@ void pre_auton()
 
 task autonomous()
 {
-	auton_rightcube();
+	pskills();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
