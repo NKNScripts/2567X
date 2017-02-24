@@ -263,4 +263,34 @@ task moveMotorCC(){
 	driving = false;
 }
 
+task moveMotorC(){
+	while(driving) wait10Msec(10);
+	driving = true;
+	if(distance > 0){
+		float cycle = distance / inPerEncoder;
+		SensorValue[rightEncoder] = 0;
+		motor[port3] = 70;
+		motor[port8] = 127;
+		while(SensorValue[rightEncoder] <= cycle)
+			wait1Msec(1);
+
+		} else {
+		float cycle = (distance / inPerEncoder);
+		SensorValue[rightEncoder] = 0;
+		motor[port3] = -70;
+		motor[port8] = -127;
+		while(SensorValue[rightEncoder] >= cycle){
+			wait1Msec(1);
+
+		}
+	}
+	motor[Leftdrive] = -25;
+	motor[Rightdrive] = -25;
+	wait(0.2);
+	stopMotor(Leftdrive);
+	stopMotor(Rightdrive);
+	driving = false;
+}
+
+
 #endif

@@ -47,7 +47,7 @@ void auton_leftcube(){
 	fence(true);
 	distance = -15;
 	startTask(moveMotor);
-	deg = -90;
+	deg = -85;
 	up = false;
 	closeTime = 0.3;
 	close = true;
@@ -109,7 +109,7 @@ void auton_rightcube(){
 	fence(false);
 	distance = -15;
 	startTask(moveMotor);
-	deg = 90;
+	deg = 85;
 	up = false;
 	closeTime = 0.3;
 	close = true;
@@ -197,10 +197,10 @@ void Auton_Left_Star() {
 	distance = -34;
 	startTask(moveMotor);
 	wait(0.5);
-	closeTime = 0.55;
+	closeTime = 0.60;
 	close = true;
 	startTask(claw);
-	deg = -96;
+	deg = -92;
 	up = false;
 	while(driving) wait10Msec(1);
 	wait(0.50);
@@ -211,13 +211,13 @@ void Auton_Left_Star() {
 	distance = 40;
 	startTask(moveMotor);
 	while(driving) wait10Msec(10);
-	closeTime = 3.5;
+	closeTime = 3.7;
 	close = true;
 	startTask(claw);
 	up = true;
 	wait(1);
 		distance = -25;
-		startTask(moveMotorCC);
+		startTask(moveMotorC);
 	startTask(lift);
 	wait(2);
 	deg = 75;
@@ -226,7 +226,7 @@ void Auton_Left_Star() {
 	wait1Msec(300);
 	//startTask(claw);
 	while(driving)wait10Msec(1);
-	distance = 37;
+	distance = 45;
 	startTask(moveMotor);
 	up = true;
 	startTask(lift);
@@ -277,7 +277,7 @@ void Auton_Right_Star() {
 	wait1Msec(300);
 	//startTask(claw);
 	while(driving)wait10Msec(1);
-	distance = 37;
+	distance = 40;
 	startTask(moveMotor);
 	up = true;
 	startTask(lift);
